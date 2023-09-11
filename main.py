@@ -1,3 +1,30 @@
+# YouTube Downloader
+#
+# Distribution
+# The source code is distributed through GitHub.
+# 当ソースコードはGitHubを通じて配布されている。
+# GitHub: https://github.com/aonekoaoi/YTDownloader
+#
+# Description
+# See README.md at GitHub.
+# GitHubのREADME.mdを参照してください。
+# GitHub: https://github.com/aonekoaoi/YTDownloader/blob/main/README.md
+#
+# Development Environment
+# Microsoft Windows 10 Pro version 22H2 (OS build 19045.3208) 64-bit
+# Visual Studio Code version 1.81.0 64-bit
+# Python 3.11.3 64-bit
+#
+# Contact Us
+# X (Twitter): https://twitter.com/aonekoaoi
+#
+# License
+# Copyright (c) 2023 aonekoaoi
+# Licensed under the MIT license.
+# MiTライセンスに基づくライセンス。
+# en: https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE.txt
+# ja: https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE_ja.txt
+
 import os
 import sys
 import ffmpeg
@@ -40,10 +67,10 @@ elif audio is None:
 elif audio is None:
     audio = audio_fun("50kbps")
 elif audio is None:
-    audio = stream.streams.get_audio_only() # 上記の処理で音声ビットレートが存在しない場合の処理
+    audio = stream.streams.get_audio_only()  # 上記の処理で音声ビットレートが存在しない場合の処理
 else:
     print("音声ビットレートの情報取得ができません。\nお手数ですがYouTubeのURLかを確認した上で再度、プログラムを開始してください。\n")
-    sys.exit() # プログラムの強制終了
+    sys.exit()  # プログラムの強制終了
 print("音声ビットレートの情報取得終了")
 
 
@@ -69,7 +96,7 @@ elif video is None:
     video = video_fun("240p")
 else:
     print("解像度の情報取得ができません。\nお手数ですがYouTubeのURLかを確認した上で再度、プログラムを開始してください。\n")
-    sys.exit() # プログラムの強制終了
+    sys.exit()  # プログラムの強制終了
 print("解像度の情報取得終了")
 
 print("\nダウンロードの開始")
@@ -81,7 +108,8 @@ print("\nフォーマットの変更開始")
 audio_path = os.path.join(folder_path, "audio.mp4a")
 audio_input = ffmpeg.input(audio_path)
 audio_output = os.path.join(folder_path, "audio.mp3")
-ffmpeg.output( # .mp3と256kbpsの変更
+ffmpeg.output(
+    # .mp3と256kbpsの変更
     audio_input,
     audio_output,
     format="mp3",
@@ -90,10 +118,12 @@ ffmpeg.output( # .mp3と256kbpsの変更
     capture_stderr=True
 )
 os.remove(audio_path) # .mp4a形式のファイルを削除
+
 video_path = os.path.join(folder_path, "video.mp4")
 video_input = ffmpeg.input(video_path)
 video_output = os.path.join(folder_path, "video2.mp4")
-ffmpeg.output( # 12000kbpsの変更
+ffmpeg.output(
+    # 12000kbpsの変更
     video_input,
     video_output,
     format="mp4",
@@ -101,7 +131,7 @@ ffmpeg.output( # 12000kbpsの変更
 ).run(
     capture_stderr=True
 )
-os.remove(video_path) # .mp4形式のファイルを削除（video.mp4）
+os.remove(video_path)  # .mp4形式のファイルを削除（video.mp4）
 print("フォーマットの変更終了")
 
 print("\n音声と動画の合成開始")
@@ -120,8 +150,8 @@ ffmpeg.output(
 ).run(
     capture_stderr=True
 )
-os.remove(audio_path) # .mp3形式のファイルを削除
-os.remove(video_path) # .mp4形式のファイルを削除（video2.mp4）
+os.remove(audio_path)  # .mp3形式のファイルを削除
+os.remove(video_path)  # .mp4形式のファイルを削除（video2.mp4）
 print("音声と動画の合成終了")
 
 print("\nデスクトップのoutputフォルダー内に「", f"{stream.title}.mp4 」が格納されています。\n")

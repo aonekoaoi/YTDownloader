@@ -1,4 +1,4 @@
-# YTDownloader
+# YouTube Downloader
 
 ## About Me
 
@@ -33,6 +33,8 @@ YouTubeの動画やショートを.mp4形式で書き出すソースコード。
 Microsoft Windows 10 Pro version 22H2 (OS build 19045.3208) 64-bit
 
 Visual Studio Code version 1.81.0 64-bit
+
+Python 3.11.3 64-bit
 
 ## Contact Us
 
