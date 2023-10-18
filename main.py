@@ -12,7 +12,7 @@
 #
 # Development Environment
 # Microsoft Windows 10 Pro version 22H2 (OS build 19045.3208) 64-bit
-# Visual Studio Code version 1.81.0 64-bit
+# Visual Studio Code version 1.83.0 64-bit
 # Python 3.11.3 64-bit
 #
 # Contact Us
@@ -30,9 +30,7 @@ import sys
 import ffmpeg
 import pytube
 
-print("\n著作権は著作者に帰属します。そのためデータの取り扱いには注意してください。")
-
-print("\nYouTubeのURLをコピーしコンソールにペースト後、Enterで確定してください。")
+print("\n著作権は著作者に帰属します。そのためデータの取り扱いには注意してください。\n\nYouTubeのURLをコピーしコンソールにペースト後、Enterで確定してください。")
 url = str(input(">>"))
 stream = pytube.YouTube(url)
 
@@ -108,6 +106,7 @@ print("\nフォーマットの変更開始")
 audio_path = os.path.join(folder_path, "audio.mp4a")
 audio_input = ffmpeg.input(audio_path)
 audio_output = os.path.join(folder_path, "audio.mp3")
+
 ffmpeg.output(
     # .mp3と256kbpsの変更
     audio_input,
@@ -117,11 +116,12 @@ ffmpeg.output(
 ).run(
     capture_stderr=True
 )
-os.remove(audio_path) # .mp4a形式のファイルを削除
+os.remove(audio_path)  # .mp4a形式のファイルを削除
 
 video_path = os.path.join(folder_path, "video.mp4")
 video_input = ffmpeg.input(video_path)
 video_output = os.path.join(folder_path, "video2.mp4")
+
 ffmpeg.output(
     # 12000kbpsの変更
     video_input,
@@ -140,6 +140,7 @@ audio_input = ffmpeg.input(audio_path)
 video_path = os.path.join(folder_path, "video2.mp4")
 video_input = ffmpeg.input(video_path)
 complete = os.path.join(folder_path, f"{stream.title}.mp4")
+
 ffmpeg.output(
     audio_input,
     video_input,
