@@ -1,60 +1,54 @@
 # YouTube Downloader
 #
-# Distribution
-# The source code is distributed through GitHub.
-# 当ソースコードはGitHubを通じて配布されている。
-# GitHub: https://github.com/aonekoaoi/YTDownloader
+# 1. Distribution
+# This source code is distributed through GitHub.
+# 当ソースコードは GitHub を通して配布されています。
+# Link: https://github.com/aonekoaoi/YTDownloader
 #
-# Description
-# See README.md at GitHub.
-# GitHubのREADME.mdを参照してください。
-# GitHub: https://github.com/aonekoaoi/YTDownloader/blob/main/README.md
+# 2. Description
+# See the README.md on GitHub.
+# GitHub の README.md を参照してください。
+# Link: https://github.com/aonekoaoi/YTDownloader/blob/main/README.md
 #
-# Development Environment
-# Microsoft Windows 10 Pro version 22H2 (OS build 19045.3208) 64-bit
-# Visual Studio Code version 1.83.0 64-bit
-# Python 3.11.3 64-bit
+# 3. Development Environment
+# - Microsoft Windows 10 Pro version 22H2 (OS build 19045.3208) 64-bit
+# - Visual Studio Code version 1.83.0 64-bit
+# - Python 3.11.3 64-bit
 #
-# Contact Us
-# X (Twitter): https://twitter.com/aonekoaoi
-#
-# License
+# 4. License
 # Copyright (c) 2023 aonekoaoi
 # Licensed under the MIT license.
-# MiTライセンスに基づくライセンス。
-# en: https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE.txt
-# ja: https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE_ja.txt
+# MIT ライセンスに基づく配布。
+# Link(en): https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE.txt
+# Link(ja): https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE_ja.txt
 
 import os
 import sys
+
 import ffmpeg
 import pytube
 
-print("\n著作権は著作者に帰属します。そのためデータの取り扱いには注意してください。\n\nYouTubeのURLをコピーしコンソールにペースト後、Enterで確定してください。")
-url = str(input(">>"))
-stream = pytube.YouTube(url)
+print("\n著作権は著作者に帰属します。そのためデータの取り扱いには注意してください。\n\nYouTube のリンクをコピーしてコンソールにペースト後、Enter で確定してください。")
+link = str(input(">>"))
+stream = pytube.YouTube(link)
 
-# outputフォルダーをデスクトップに作成
+# output フォルダをデスクトップに作成
 desktop_path = os.path.expanduser("~/Desktop")
 folder_path = os.path.join(desktop_path, "output")
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
-    print("\noutputフォルダーをデスクトップに作成しました。")
-else:
-    print("\noutputフォルダーがデスクトップに存在しています。そのためoutputフォルダーをデスクトップに作成できません。")
 
 
 def audio_fun(bps):
     """
-    音声ビットレートの情報取得動作
-    bps: 音声ビットレートを代入
+    音声ビットレートの情報取得
+    bps: 音声ビットレートを入力
     """
-    print(bps, "の音声ビットレートの情報取得中")
     audio = stream.streams.filter(abr=bps).first()
     return audio
 
 
-print("\n音声ビットレートの情報取得開始")
+# 音声ビットレートの情報取得
 audio = audio_fun("256kbps")
 if audio is None:
     audio = audio_fun("160kbps")
@@ -65,24 +59,24 @@ elif audio is None:
 elif audio is None:
     audio = audio_fun("50kbps")
 elif audio is None:
-    audio = stream.streams.get_audio_only()  # 上記の処理で音声ビットレートが存在しない場合の処理
+    # 以上の分岐処理で音声ビットレートが存在しない場合の処理
+    audio = stream.streams.get_audio_only()
 else:
-    print("音声ビットレートの情報取得ができません。\nお手数ですがYouTubeのURLかを確認した上で再度、プログラムを開始してください。\n")
-    sys.exit()  # プログラムの強制終了
-print("音声ビットレートの情報取得終了")
+    # すべての分岐処理で音声ビットレートが存在しない場合は強制終了
+    print("音声ビットレートの情報取得ができません。\nお手数ですが YouTube のリンクか確認した上で、再度プログラミングを実行してください。\n")
+    sys.exit()
 
 
 def video_fun(p):
     """
-    解像度の情報取得動作
-    p: 解像度を代入
+    解像度の情報取得
+    p: 解像度を入力
     """
-    print(p, "の解像度の情報取得中")
     video = stream.streams.filter(res=p).first()
     return video
 
 
-print("\n解像度の情報取得開始")
+# 解像度の情報取得
 video = video_fun("1080p")
 if video is None:
     video = video_fun("720p")
@@ -93,48 +87,47 @@ elif video is None:
 elif video is None:
     video = video_fun("240p")
 else:
-    print("解像度の情報取得ができません。\nお手数ですがYouTubeのURLかを確認した上で再度、プログラムを開始してください。\n")
-    sys.exit()  # プログラムの強制終了
-print("解像度の情報取得終了")
+    # すべての分岐処理で解像度が存在しない場合は強制終了
+    print("解像度の情報取得ができません。\nお手数ですが YouTube のリンクか確認した上で、再度プログラミングを実行してください。\n")
+    sys.exit()
 
-print("\nダウンロードの開始")
+# mp4a および mp4 形式をダウンロード
 audio.download(folder_path, "audio.mp4a")
 video.download(folder_path, "video.mp4")
-print("ダウンロードの終了")
 
-print("\nフォーマットの変更開始")
 audio_path = os.path.join(folder_path, "audio.mp4a")
 audio_input = ffmpeg.input(audio_path)
 audio_output = os.path.join(folder_path, "audio.mp3")
 
 ffmpeg.output(
-    # .mp3と256kbpsの変更
     audio_input,
     audio_output,
-    format="mp3",
-    **{"b:a": "256k"}
+    format="mp3",  # mp4a -> mp3 に変更
+    **{"b:a": "256k"}  # 256kbps に変更
 ).run(
     capture_stderr=True
 )
-os.remove(audio_path)  # .mp4a形式のファイルを削除
+
+# mp4a 形式の音声データを削除
+os.remove(audio_path)
 
 video_path = os.path.join(folder_path, "video.mp4")
 video_input = ffmpeg.input(video_path)
 video_output = os.path.join(folder_path, "video2.mp4")
 
 ffmpeg.output(
-    # 12000kbpsの変更
     video_input,
     video_output,
     format="mp4",
-    **{"b:v": "12000k"}
+    **{"b:v": "12000k"}  # 12000kbps に変更
 ).run(
     capture_stderr=True
 )
-os.remove(video_path)  # .mp4形式のファイルを削除（video.mp4）
-print("フォーマットの変更終了")
 
-print("\n音声と動画の合成開始")
+# mp4 形式の動画データを削除（video.mp4）
+os.remove(video_path)
+
+# 音声データと動画データの合成
 audio_path = os.path.join(folder_path, "audio.mp3")
 audio_input = ffmpeg.input(audio_path)
 video_path = os.path.join(folder_path, "video2.mp4")
@@ -151,8 +144,9 @@ ffmpeg.output(
 ).run(
     capture_stderr=True
 )
-os.remove(audio_path)  # .mp3形式のファイルを削除
-os.remove(video_path)  # .mp4形式のファイルを削除（video2.mp4）
-print("音声と動画の合成終了")
 
-print("\nデスクトップのoutputフォルダー内に「", f"{stream.title}.mp4 」が格納されています。\n")
+# mp3 および mp4 形式のデータを削除（audio.mp3 および video2.mp4）
+os.remove(audio_path)
+os.remove(video_path)
+
+print("\nデスクトップの output フォルダ内に動画データを格納しました。\n")
