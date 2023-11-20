@@ -1,57 +1,51 @@
-# YouTube Downloader
+<!--
+  1. 過去に作成した README.md を基に作成する
+  2. 書き方の統一
+  3. カラーコードは小文字英数字
+  4. 英語の文章内に短縮形を使用しない
+  5. 日本語の文章内に英単語を挿入するときは、半角スペースを英単語の前後に挿入
+  6. 英語および日本語の語順のならびを意識する。しかし使用頻度の高いものおよび、流れがおかしくなるものはこの通りではない
+-->
 
-## About Me
+<p align="center">
+  <h1 align="center">YouTube Downloader</h1>
+  <p align="center">YouTube の動画およびショート動画を mp4 形式で書き出すソースコード。</p>
+</p>
 
-<details>
+## 1. Description
 
-こんにちは、青猫あおいと申します。
+### 1. 1. Set Up FFmpeg
 
-C, Java, Pythonを趣味程度で嗜んでいます。
+YouTube の動画およびショート動画を書き出すときに **FFmpeg** を使用するため、各自で [ダウンロード](https://ffmpeg.org/download.html) し環境変数パスを通してください。
 
-</details>
+### 1. 2. Set Up pip install
 
-## Overview
+以下の2つを **pip** からインストールしてください。
 
-<details>
+1. **ffmpeg**
 
-YouTubeの動画やショートを.mp4形式で書き出すソースコード。
+2. **pytube**
 
-</details>
+### 1. 3. Run
 
-## Description
+プログラムを実行しコンソールにしたがってください。
 
-### STEP1 FFmpeg
+### 1. 4. Issue
 
-当ソースコードではFFmpegを使用。
+YouTube の仕様変更により動作しなくなることがありますが、この問題に対して対応しません。
 
-そのため各自で[ダウンロード](https://ffmpeg.org/download.html)し環境変数を通す必要がある。
+## 2. Development Environment
 
-### STEP2 pip install
+- Microsoft Windows 10 Pro version 22H2 (OS build 19045.3208) 64-bit
 
-当ソースコードでは外部ライブラリを使用。
+- Visual Studio Code version 1.83.0 64-bit
 
-使用外部ライブラリは`ffmpeg`と`pytube`。
+- Python 3.11.3 64-bit
 
-### STEP3 run
-
-プログラムを実行しコンソールに従いましょう。
-
-## Development Environment
-
-Microsoft Windows 10 Pro version 22H2 (OS build 19045.3208) 64-bit
-
-Visual Studio Code version 1.83.0 64-bit
-
-Python 3.11.3 64-bit
-
-## Contact Us
-
-[X (Twitter)](https://twitter.com/aonekoaoi)
-
-## License
+## 3. License
 
 Copyright (c) 2023 aonekoaoi
 
 Licensed under the [MIT](https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE.txt) license.
 
-[MIT](https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE_ja.txt)ライセンスに基づくライセンス。
+[MIT](https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE_ja.txt) ライセンスに基づく配布。
