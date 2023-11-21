@@ -6,7 +6,7 @@
 # Link: https://github.com/aonekoaoi/YTDownloader
 #
 # 2. Description
-# See the README.md on GitHub.
+# See README.md on GitHub.
 # GitHub の README.md を参照してください。
 # Link: https://github.com/aonekoaoi/YTDownloader/blob/main/README.md
 #
@@ -127,7 +127,7 @@ ffmpeg.output(
 # mp4 形式の動画データを削除（video.mp4）
 os.remove(video_path)
 
-# 音声データと動画データの合成
+# 音声データおよび動画データの合成
 audio_path = os.path.join(folder_path, "audio.mp3")
 audio_input = ffmpeg.input(audio_path)
 video_path = os.path.join(folder_path, "video2.mp4")
