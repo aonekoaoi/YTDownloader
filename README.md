@@ -14,11 +14,11 @@
 
 ## 1. Description
 
-### 1. 1. Set Up FFmpeg
+### 1. 1. Set Up for FFmpeg
 
 YouTube の動画およびショート動画を書き出すときに **FFmpeg** を使用するため、各自で [ダウンロード](https://ffmpeg.org/download.html) し環境変数パスを通してください。
 
-### 1. 2. Set Up pip install
+### 1. 2. Set Up for pip
 
 以下の2つを **pip** からインストールしてください。
 
