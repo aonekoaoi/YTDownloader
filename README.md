@@ -3,8 +3,9 @@
   2. 書き方を統一する。
   3. 英語の文章内に短縮形を使用しない。
   4. カラーコードは小文字英数字を使用する。
-  5. 日本語の文章内に英単語を挿入するときは、半角スペースを英単語の前後に挿入する。またハイパーリンクも同様にする。
-  6. 英語および日本語の語順のならびを意識する。しかし使用頻度の高い単語および、流れがおかしくなる単語はこの通りではない。
+  5. GitHub 内の参照方法は相対参照を使用する。
+  6. 日本語の文章内に英単語を挿入するときは、半角スペースを英単語の前後に挿入する。またハイパーリンクも同様にする。
+  7. 英語および日本語の語順のならびを意識する。しかし使用頻度の高い単語および、流れがおかしくなる単語はこの通りではない。
 -->
 
 <div align="center">
@@ -46,6 +47,6 @@ YouTube の仕様変更により動作しなくなることがありますが、
 
 Copyright (c) 2023 aonekoaoi
 
-Licensed under the [MIT](https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE.txt) license.
+Licensed under the [MIT](./LICENSE.txt) license.
 
-[MIT](https://github.com/aonekoaoi/YTDownloader/blob/main/LICENSE_ja.txt) ライセンスに基づく配布。
+[MIT](./LICENSE_ja.txt) ライセンスに基づく配布。
